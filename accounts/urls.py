@@ -10,6 +10,7 @@ urlpatterns = [
     path('landingpage/', views.landingpage, name='landingpage'),
     path('seeker_dashboard/', views.seeker_dashboard, name='seeker_dashboard'),
     path('seeker_profile/', views.seeker_profile, name='seeker_profile'),
+    path('seeker_profile/cv', views.CV, name='CV'),
     path('recruiter_profile/', views.recruiter_profile, name='recruiter_profile'),
 
     path('post_job/', views.post_job, name='post_job'),

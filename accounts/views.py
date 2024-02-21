@@ -289,3 +289,22 @@ def search(request):
     return render(request, 'search.html',allJob)
 
 
+def CV(request):
+    if request.user.is_authenticated:
+        user_details = Client.objects.filter(user=request.user)[0]
+        userinfo=User.objects.filter(username=request.user)[0]
+        if user_details and userinfo:
+            print(userinfo.username)
+            print(userinfo.email)
+            print(userinfo.first_name)
+            print(userinfo.last_name)
+            print(user_details.image)
+            print(user_details.contact)
+            print(user_details.education)
+            print(user_details.interested_in)
+            return render(request, 'cv.html', {'user_details': user_details, 'userinfo': userinfo})
+
+        else:
+            return HttpResponse("Please complete your profile to view your CV.")
+    else:
+        return redirect('/accounts/login/')
