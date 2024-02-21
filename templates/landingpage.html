@@ -1,0 +1,36 @@
+{% load static %}
+
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <title>Home</title>
+</head>
+<body>
+    <nav>
+        <div class="logo"><img src="{% static "logo.png" %}" alt="logo"/ height="80px"></div>
+        <ul class="nav-items">
+            <li class="nav-item"><a href="{% url 'landingpage' %}"> Home</a></li>
+            <li class="nav-item"><a href="{% url 'recruiter_profile' %} "> Profile</a></li>
+            <li class="nav-item"><a href="{% url 'applicants' %}"> applicants</a></li>
+            <li class="nav-item"><a href="{% url 'logout' %}"> Logout</a></li>
+        </ul>
+    </nav>
+    <main class="hero">
+        <div class="container">
+            <div class="hero-text">
+                <h1 class="hero-title">&nbsp &nbsp &nbsp &nbsp &nbsp At ROJGAARKHOJI</h1>
+                <p class="hero-desc">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp You can hire best employees for your vacant jobs</p>
+                <div class="cta">
+                    <a href=" {% url 'job_home' %} "><button class="btn btn-primary">view Jobs</button></a>
+                </div>
+                <div class="cta">
+                    <a href=" {% url 'post_job' %}"><button class="btn btn-primary">aDD Jobs</button></a>
+                </div>
+            </div>
+    </main>
+</body>
+
+</html>

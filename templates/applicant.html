@@ -1,0 +1,45 @@
+{% load static %}
+
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <title>Home</title>
+</head>
+<body>
+    <nav>
+        <div class="logo"><img src="{% static "logo.png" %}" alt="logo"/ height="80px"></div>
+        <ul class="nav-items">
+            <li class="nav-item"><a href="{% url 'landingpage' %}"> Home</a></li>
+            <li class="nav-item"><a href="{% url 'recruiter_profile' %} "> Profile</a></li>
+            <li class="nav-item"><a href="{% url 'applicants' %}"> applicants</a></li>
+            <li class="nav-item"><a href="{% url 'logout' %}"> Logout</a></li>
+        </ul>
+    </nav>
+ <main method class="seekerDashboard">
+<body class="w3-light-grey">
+
+<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+{% if jobs %}
+<center><h1>These are your applicants for {{ job.job }}:</h1></center>
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+  <div class="container">
+    <div class="row">
+      <ul class="job-items">
+        {% for jobs in jobs %}
+        <li class="job-item" style="height: 250px; 
+    width: 800px;">
+        <div class="job-item-left"><br>
+Name of applicant: {{jobs.user.first_name}} {{jobs.user.last_name}}<br><br>
+Email of applicant: {{jobs.user.email}}<br><br>
+    <h3> CV:<a href="{% static 'seeker_cv/cv.jpg' %} " target='_'> View applicant's CV </a>  </h3> 
+    <br> <br> <br> <br> <br>
+{% endfor %}
+{% endblock %}
+{% else %}
+<h1>{{job}}</h1>
+{% endif %}
+

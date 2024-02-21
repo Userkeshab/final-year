@@ -1,0 +1,46 @@
+
+
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    
+</head>
+<body>
+    <nav>
+         <div class="logo"><img src="{% static "logo.png" %}" alt="logo"/ height="80px"></div>
+        <ul class="nav-items">
+            <li class="nav-item"><a href="/"> Home</a></li>
+            <li class="nav-item"><a href="{% url 'login' %}"> Login</a></li>
+            <li class="nav-item"><a href="{% url 'client_register' %}"> Client Register</a></li>
+            <li class="nav-item"><a href="{% url 'recruiter_register' %}">Recruiter Register</a></li>
+            <li class="nav-item"><a href="{% url 'feedback' %}"> Contact Us</a></li>
+        </ul>
+    </nav>
+    <main class="login">
+        <div class="container">
+           <div class="login-form-wrapper">
+            <form action="{% url 'feedback' %}" method="post">
+                {% csrf_token %}
+                <div class="form-item">
+                    <input type="text" name="feedback" class="form-input" type="text" name="feedback" placeholder="Report issues or give feedbacks.">
+                </div>
+                
+               
+                <div class="form-item">
+                    <input type="submit" name="submit" class="form-button btn btn-primary" style="width: 100px; padding: 10px; height: 30px;" value="Submit" name="submit">
+                </div>
+            </form>
+            
+           </div>
+        </div>
+    </main>
+</body>
+</html>
+

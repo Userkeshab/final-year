@@ -1,0 +1,56 @@
+{% load static %}
+<head>
+  <title>Home</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saved Jobs</title>
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+  />
+</head>
+
+    <nav class="nav">
+  <div class="logo"><img src="{% static "logo.png" %}" alt="logo"/ height="80px"></div>
+    <ul class="nav-items">
+      <li class="nav-item"><a href="{% url 'seeker_dashboard' %}"> Home</a></li>
+      <li class="nav-item"><a href="{% url 'seeker_profile' %}"> Profile</a></li>
+      <li class="nav-item"><a href="{% url 'saved_jobs' %}"> saved jobs</a></li>
+      <li class="nav-item"><a href="{% url 'appliedJobs' %}">Applied Jobs</a></li>
+      <li class="nav-item"><a href="{% url 'logout' %}"> Logout</a></li>
+    </ul>
+  </nav>
+ <main method class="seekerDashboard">
+<body class="w3-light-grey">
+
+<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+  <div class="container">
+<div class="row">
+      <ul class="job-items">
+    <center><h1>These are your saved jobs:</h1></center>
+  </div>
+</ul>
+</div>
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+  <div class="container">
+    <div class="row">
+      <ul class="job-items">
+    {% for job in jobs %}
+    <li class="job-item" style="height: 400; 
+    width: 800px;">
+        <div class="job-item-left"><br>
+    Title               : {{ job.job.job_title }}<br><br>
+    Category            : {{ job.job.job_category}}<br><br>
+    Position            : {{ job.job.job_position }}<br><br>
+    Employer            : {{ job.job.job_employer }}<br><br>
+    Description         : {{ job.job.job_description }}<br><br>
+    Phone               : {{ job.job.job_phone }}<br><br>
+    Website             : {{ job.job.job_website }}<br><br>
+    <a href="{% url 'remove_job' id=job.job_id %}"><button class="btn btn-primary">remove</button></a>
+    <br><br><br><br>
+    {% endfor %}
+</html>
+{% endblock %}

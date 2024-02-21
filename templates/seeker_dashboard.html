@@ -1,0 +1,118 @@
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+  <title>Job seeker home page</title>
+</head>
+
+<body>
+  <nav>
+   <div class="logo"><img src="{% static "logo.png" %}" alt="logo"/ height="80px"></div>
+    <ul class="nav-items">
+      <li class="nav-item"><a href="{% url 'seeker_dashboard' %}"> Home</a></li>
+      <li class="nav-item"><a href="{% url 'seeker_profile' %}"> Profile</a></li>
+      <li class="nav-item"><a href="{% url 'saved_jobs' %}"> saved jobs</a></li>
+      <li class="nav-item"><a href="{% url 'appliedJobs' %}">Applied Jobs</a></li>
+      <li class="nav-item"><a href="{% url 'logout' %}"> Logout</a></li>      
+    </ul>
+  </nav>
+  
+  <main method class="seekerDashboard">
+    <div class="container">
+      <div class="row">
+        <div class="cta">
+          <br>
+
+          <div class="search-bar">
+             <form method="get" action="{% url 'search' %}" class="search-bar">            
+              <input type="search" placeholder="Search your job" name="query" id="query" class="search-bar-input">
+              <button class="get-started-btn btn-primary" type ="submit">SEARCH</button>
+            </form>
+            </div>
+      </div>
+  </div>
+</form>
+
+        <ul class="job-items">
+          {% for job in jobs %}
+          <li class="job-item" style="height: 400px; width: 1000px;">
+            <div class="job-item-left">
+              <h2 class="job-item-title">{{ job.job_title }}</h2>
+              <p class="job-desc">Job Description: {{ job.job_description }}</p>
+              <p>Employer: {{ job.user }}</p>
+              <p>Position: {{ job.job_position }}</p>
+              <div class="job-category-wrapper">
+                <p class="job-item-category">Category:</p>
+                <p></p>
+                <p class="job-category">{{ job.job_category }}</p>
+              </div>
+            </div>
+
+            <div class="job-item-low">
+              <h5>Contact Info</h5>
+              <p>Phone: {{ job.job_phone }}</p>
+              <p>Email Us: <a href="">{{ job.job_email }}</a></p>
+              <p>Apply On Our Website: <a href="">{{ job.job_website }}</a></p>
+              <div class="job-item-cta">
+                <a href="{% url 'apply_job' job.job_id %}" ><button class="btn btn-primary" style="margin-right:20px;"> APPLY</button></a>
+                <a href="{% url 'save_job' job.job_id %}"><button class="btn btn-primary"> save </button></a>
+              </div>
+              
+            </div>
+          </li>
+          {% endfor %}
+        </ul> 
+<br><hr><br><hr>
+
+<h1>Recommended Jobs</h1>
+
+        <ul class="job-items">
+          {% for rec_jobs in rec_jobs %}
+          <li class="job-item">
+            <div class="job-item-left">
+              <h2 class="job-item-title">{{ rec_jobs.job_title }}</h2>
+              <p class="job-desc">Job Description: {{ rec_jobs.job_description }}</p>
+              <p>Employer: {{ rec_jobs.user }}</p>
+              <p>Position: {{ rec_jobs.job_position }}</p>
+              <div class="job-category-wrapper">
+                <p class="job-item-category">Category:</p>
+                <p></p>
+                <p class="job-category">{{ rec_jobs.job_category }}</p>
+              </div>
+            </div>
+
+            <div class="job-item-low">
+              <h5>Contact Info</h5>
+              <p>Phone: {{ rec_jobs.job_phone }}</p>
+              <p>Email Us: <a href="">{{ rec_jobs.job_email }}</a></p>
+              <p>Apply On Our Website: <a href="">{{ rec_jobs.job_website }}</a></p>
+               <div class="job-item-cta">
+                <a href="{% url 'apply_job' rec_jobs.job_id %}" ><button class="btn btn-primary" style="margin-right:20px;"> APPLY</button></a>
+                <a href="{% url 'save_job' rec_jobs.job_id %}"><button class="btn btn-primary"> save </button></a>
+              </div>
+              
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    </div>
+  </main>
+</body>
+</html>
+
+
+
+    <div style="height: 10px;">
+      {% for message in messages %}
+      <h1>{{message}}</h1>
+      {% endfor %}
+    </div>

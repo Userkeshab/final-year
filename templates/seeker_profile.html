@@ -1,0 +1,69 @@
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Jobseeker Profile</title>
+</head>
+
+    <nav class="nav">
+    <div class="logo"><img src="{% static "logo.png" %}" alt="logo"/ height="80px"></div>
+    <ul class="nav-items">
+      <li class="nav-item"><a href="{% url 'seeker_dashboard' %}"> Home</a></li>
+      <li class="nav-item"><a href="{% url 'seeker_profile' %}"> Profile</a></li>
+      <li class="nav-item"><a href="{% url 'saved_jobs' %}"> saved jobs</a></li>
+      <li class="nav-item"><a href="{% url 'appliedJobs' %}">Applied Jobs</a></li>
+      <li class="nav-item"><a href="{% url 'logout' %}"> Logout</a></li>
+    </ul>
+  </nav>
+ <main method class="seekerDashboard">
+<body class="w3-light-grey">
+
+
+<ul class="job-items">
+    <li class="job-item" style="height: 600px;">
+            <div class="job-item-left"><br>
+        	<h2 class="job-item-title" style="font-size: 50px; padding-left: 140px;">Name: {{user.first_name}} {{user.last_name}}</h2>
+          <br>
+        	<hr>
+          <br>
+          <center>
+          <p><b style="font-size: 20px;">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>Email: {{user.email}}</b></p>
+          </center>
+          <br>
+          <br>
+          {% for user in userdata %}
+          <center>
+          <p ><b style="font-size: 20px;">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>Gender: {{user.gender}}</b></p></center>
+          <br>
+          <br>
+          <center>
+          <p><b style="font-size: 20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Educational Level: {{user.education}}</b></p>
+        </center>
+          <br>
+          <br>
+          <center>
+          <p><b style="font-size: 20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>Phone number: {{user.contact}}</b></p></center>
+          <br>
+          <br>
+          <center>
+          <p><b style="font-size: 20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Preferred job type: {{user.interested_in}}</b></p></center>
+          <div>
+          
+          <center>          
+          <br>
+          <p><b style="font-size: 20px;"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp CV :<a href="{% static 'seeker_cv/cv.jpg' %} " target='_'> View your CV </a> </b></p>
+          {% comment %} <p>cv</p><img src="{{user.image.url}}"> {% endcomment %}
+          <br />
+{% endfor %}
+</center>
+          
+        </div>
+      </div>
