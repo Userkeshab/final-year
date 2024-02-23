@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <title>My CV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        .cv-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .cv-item {
+            margin-bottom: 15px;
+        }
+        .cv-item label {
+            font-weight: bold;
+        }
+        .cv-item p {
+            margin: 0;
+        }
+        .cv-image {
+            max-width: 100px;
+            border-radius: 50%;
+            margin-top: 10px;
+        }
+        .btn-wrapper{
+            margin: 20px 0;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            gap: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border: 2px solid #4CAF50;
+            transition: all 0.2s ease-in-out;
+        }
+        button:hover {
+            background-color: transparent;
+            color: #000;
+
+        }
+        
+        
+        </style>
+</head>
+<body>
+    <main>
+
+        <div class="cv-container" id='cv'>
+            <div class="heading">
+                <h1>Curriculum vitae</h1>
+            </div>
+            
+            {% if user_details and userinfo %}
+
+            <div class="cv-item">
+                <label for="first_name">Full Name:</label>
+            <p>{{userinfo.first_name}} {{userinfo.last_name}}</p>
+        </div>
+       
+        <div class="cv-item">
+            <label for="email">Email:</label>
+            <p>{{userinfo.email}}</p>
+        </div>
+        <div class="cv-item">
+            <label for="contact">Contact Number:</label>
+            <p>{{user_details.contact}}</p>
+        </div>
+        <div class="cv-item">
+            <label for="gender">Gender:</label>
+            <p>{{user_details.gender}}</p>
+        </div>
+        <div class="cv-item">
+            <label for="address">Address:</label>
+            <p>{{user_details.address}}</p>
+        </div>
+        <div class="cv-item">
+            <label for="education">Education:</label>
+            <p>{{user_details.education}}</p>
+        </div>
+        <div class="cv-item">
+            <label for="interested_in">Interested In:</label>
+            <p>{{user_details.interested_in}}</p>
+        </div>
+        {%else%}
+        <div class="cv-item">
+            <label for="interested_in">Sorry No Data Found</label>
+        </div>
+        {% endif %}
+
+    </div>
+    <div class="btn-wrapper">
+        <a href="/accounts/seeker_profile"><button>Back</button><a>
+        <button id='download'>Download</button>
+    </div>
+</main>
+<script>
+        function generatePDF() {
+            const element = document.getElementById("cv-");
+            print(element)
+            html2pdf().from(element).save("my_cv.pdf");
+        }
+        document.getElementById("download").onclick = function () {
+            document.querySelector('.btn-wrapper').style.display = 'none';
+            setTimeout(()=>null, 1000);
+            generatePDF();
+            document.querySelector('.btn-wrapper').style.display = 'flex';
+        }
+</script>
+</body>
+</html>

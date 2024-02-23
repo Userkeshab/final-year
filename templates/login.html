@@ -1,0 +1,53 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    
+</head>
+<body>
+    <nav>
+         <div class="logo"><img src="{% static "logo.png" %}" alt="logo"/ height="80px"></div>
+        <ul class="nav-items">
+            <li class="nav-item"><a href="/"> Home</a></li>
+            <li class="nav-item"><a href="{% url 'login' %}"> Login</a></li>
+            <li class="nav-item"><a href="{% url 'client_register' %}"> Client Register</a></li>
+            <li class="nav-item"><a href="{% url 'recruiter_register' %}">Recruiter Register</a></li>
+            <li class="nav-item"><a href="{% url 'feedback' %}"> Contact Us</a></li>
+        </ul>
+    </nav>
+    <main class="login">
+        <div class="container">
+           <div class="login-form-wrapper">
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+
+                <div class="form-item">
+                    <input type="text" name="username" class="form-input" type="text" name="username" placeholder="Username">
+                </div>
+                
+                <div class="form-item">
+                    <input type="password" name="password1" class="form-input" type="password" name="password1" placeholder="Password">
+                </div>
+
+                <div class="form-item">
+                    <input type="submit" name="submit" class="form-button btn btn-primary" style="width: 100px; padding: 10px; height: 30px;" value="Login" name="login">
+                </div>
+                <p>Not a member? <a href="{% url 'client_register' %} ">Signup</a></p>
+                <div style="height: 10px;">
+                    {% for message in messages %}
+                    <h1>{{message}}</h1>
+                    {% endfor %}
+                </div>
+            </form>
+            
+           </div>
+        </div>
+    </main>
+</body>
+</html>

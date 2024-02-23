@@ -1,0 +1,69 @@
+{% load static %}
+<head>
+  <title>Home</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recruiter's Home page</title>
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+  />
+</head>
+
+<nav>
+    <div class="logo"><img src="{% static "logo.png" %}" alt="logo"/ height="80px"></div>  <ul class="nav-items">
+    <li class="nav-item"><a href="{% url 'landingpage' %}"> Home</a></li>
+    <li class="nav-item"><a href="{% url 'recruiter_profile' %}"> Profile</a></li>
+    <li class="nav-item"><a href="{% url 'applicants' %}"> Applicants</a></li>
+    <li class="nav-item"><a href="{% url 'logout' %}"> Logout</a></li>
+  </ul>
+</nav>
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+<div class="job-container">
+  <div class="container">
+    <div class="row">
+      <ul class="job-items">
+      {% for job in jobs %}
+
+
+      <li class="job-item" style="height: 550px; 
+    width: 1000px;">
+        <div class="job-item-left">
+         <a href="{% url 'job_details' %}"> <h2 class="job-item-title">{{ job.job_title }}</h2></a><hr><br><br>
+          <b>Employer: {{job.user}}</b><br><br>
+          <b class="position">Position: {{ job.job_position }}</b><br><br>
+          <b>Job description: {{job.job_description}}</b><br><br>
+          <b>Company contact number: {{ job.job_phone }}</b><br><br>
+          <b>Email Us: <a href="">{{ job.job_email }}</a></b><br><br>
+          <b>Apply On Our Website: <a href="">{{ job.job_website }}</a></p>
+
+          <div class="job-category-wrapper">
+            <b style="font-size: 14px;" class="job-item-category">Category:</b>
+            <b class="job-category">{{ job.job_category }}</b><br>
+          </div>
+          <div class="job-item-cta" style="padding-left: 10px;">
+            <center><a href="{% url 'delete_job' id=job.job_id %}"><button  class="btn btn-primary" style="float: right; margin-right: 40px;">Delete Job</button></a></center>
+          </div>
+        </div>
+      </li>
+
+      {% endfor %}
+      <div class="cta">
+        <br>
+        <a href="{% url 'post_job' %}"><center><button class="btn btn-primary centrebtn">ADD more Jobs</button></center></a
+        >
+      </div>
+      <div style="height: 10px">
+        {% for message in messages %}
+        <h1>{{message}}</h1>
+        {% endfor %}
+      </div>   
+    </ul>
+  </div>
+</div>
+</div>
+
+{% endblock %}

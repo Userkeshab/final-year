@@ -1,0 +1,79 @@
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Recruiter Profile</title>
+</head>
+ <nav class="nav">
+        <div class="logo"><img src="{% static "logo.png" %}" alt="logo"/ height="80px"></div>
+        <ul class="nav-items">
+            <li class="nav-item"><a href="{% url 'landingpage' %}"> Home</a></li>
+            <li class="nav-item"><a href="{% url 'recruiter_profile' %}"> Profile</a></li>
+            <li class="nav-item"><a href="{% url 'applicants' %}"> applicants</a></li>
+            <li class="nav-item"><a href="{% url 'logout' %}"> Logout</a></li>
+        </ul>
+    </nav>
+<body class="w3-light-grey">
+<main method class="seekerDashboard">
+<body class="w3-light-grey">
+
+
+<ul class="job-items">
+    <li class="job-item" style="height: 600px;">
+            <div class="job-item-left"><br>
+            {% for user  in userdata %}
+        	<br>
+          <h2 class="job-item-title" style="font-size: 50px; padding-left: 100px;">Company name: {{user.company_name}}</h2>
+          <br>
+          <hr>
+          <br>
+          <center>
+          <p><b style="font-size: 20px;">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>Company Email: {{user.company_email}}</b></p>
+          </center>
+            <br>
+            <br>
+          <p><b style="font-size: 20px;">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<b class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></b>Company Type:{{user.company_type}} </p>
+          <br>
+          <br>
+          <p><b style="font-size: 20px;">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>Address: {{user.company_location}}</b></p>
+          <br>
+          <br>
+            <p style="padding-left: 15px;">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <b>Recruiter Name: {{user.recruiter_name}} {{user.recruiter_contact}}</b></p>
+          <br>
+          <br>
+
+          <p>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>Phone Number: {{user.company_contact}}</p>
+          <br>
+          <hr>
+          <br>
+          <p class="w3-large">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Company Details: </b></p><br>
+          <div class="w3-container"><center>
+          <p>{{user.company_details}}</p></center>
+
+
+
+          
+          {%endfor%}
+          <br>
+
+          
+          <br>
+        </div>
+      </div><br>
+
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+  <!-- End Page Container -->
+</div>

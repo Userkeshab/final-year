@@ -1,0 +1,35 @@
+{% load static %} 
+<head>
+  <title>Home</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post a Job</title>
+</head>
+
+<nav>
+  <div class="logo"></div>
+  <ul class="nav-items">
+    <li class="nav-item"><a href="{% url 'landingpage' %}"> Home</a></li>
+    <li class="nav-item"><a href="{% url 'recruiter_profile' %}"> Profile</a></li>
+    <li class="nav-item"><a href="{% url 'applicants' %}"> Applicants</a></li>
+    <li class="nav-item"><a href="{% url 'logout' %}"> Logout</a></li>
+  </ul>
+</nav>
+<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+{% block content %}
+<div class="job-container">
+   <br>
+  <div class="form-group form-listJob">
+    <h3 class="form-title">Post A job</h3>
+    <form method="POST" action="">
+      {% csrf_token %} {{ form.as_ul }}
+      <center>
+      <button class="btn btn-primary centrebtn"  type="submit" name="submit">POST JOB</button>
+    </center>
+    </form>
+   
+  </div>
+</div>
+
+{% endblock %}

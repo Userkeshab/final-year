@@ -1,0 +1,118 @@
+ {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job seeker's Registration Page</title>
+  
+</head>
+<body>
+    <nav>
+         <div class="logo"><img src="{% static "logo.png" %}" alt="logo"/ height="80px"></div>
+        <ul class="nav-items">
+            <li class="nav-item"><a href="/"> Home</a></li>
+            <li class="nav-item"><a href="{% url 'login' %}"> Login</a></li>
+            <li class="nav-item"><a href="{% url 'client_register' %}"> Client Register</a></li>
+            <li class="nav-item"><a href="{% url 'recruiter_register' %}">Recruiter Register</a></li>
+            <li class="nav-item"><a href="{% url 'feedback' %}"> Contact Us</a></li>
+        </ul>
+    </nav>
+    <main class="login">        
+        <center>
+        <div class="container">
+        <div class="form">
+        <div class="form">
+            <h1 class="title">Create a job seeker account</h1>
+
+            <form action="{% url 'client_register' %}" method="post" class="myform" enctype="multipart/form-data">
+              {% csrf_token %}
+
+               <div class="control-from">
+                    <label for="username">First Name *</label>
+                    <input type="text" name="first_name" id="firstname" required="true">
+                </div>       
+
+                <div class="control-from">
+                    <label for="company_email">Last Name *</label>
+                    <input type="text" required="true" name="last_name">
+                </div>
+
+                <div class="control-from">
+                    <label for="password1">Password *</label>
+                    <input type="password" id="password1" class="form-input" required="true" name="password1"/>        
+                </div>
+
+                <div class="control-from">
+                    <label for="password">Confirm Password *</label>
+                    <input type="password" id="password1" class="form-input" name="password2" required="true"/> <br>  
+                </div>
+
+                <div class="control-from">
+                    <label for="username">Username *</label>
+                    <input type="text" required="true" id="username" name="username"> 
+                </div>
+
+
+                <div class="control-from">
+                    <label for="email">Email Address *</label>
+                    <input type="email" required="true" name="email" id="email">       
+                </div>
+
+
+                <div class="control-from">
+                    <label style="margin-top: 13px;" name="userType">  Gender *</label>
+                    <input type="radio" style="margin-left: 40px; height: 15px; width: 15px; padding: 2px; cursor: pointer;" id="male" name="gender" value="male">    Male
+                    <input type="radio" style="margin-left: 40px; height: 15px; width: 15px; padding: 2px; cursor: pointer;" id="female" name="gender" value="female" />    Female
+                </div>
+
+                <div class="control-from">
+                    <label for="contact">Contact Number*</label>
+                    <input type="text" required="true" name="contact" id="contact">
+                </div>
+
+                <div class="control-from">          
+                    <label for="address">Address *</label>
+                    <input type="text" required="true" name="address" id="address"/>  
+                </div>
+
+                <div class="control-from">
+                    <label for="educationLevel">Education Level *</label>
+                    <input type="text" required="true" name="education" id="educationLevel"/> 
+                </div>               
+                
+                <div class="control-from">
+                    <label for="preferred_job_category">Please select your Preferred Job Category</label>
+                    <select name="interested_in" id="preferred_job_category" required="true" >
+                      <option value="finance">Finance</option>
+                      <option value="marketing">Marketing</option>
+                      <option value="webdesign">Webdesign </option>
+                      <option value="banking">Banking</option>
+                      <option value="security">security</option>
+                      <option value="teaching">Teaching</option>
+                      <option value="engineering">Engineering</option>
+                      <option value="it">IT</option>
+                      <option value="others ">Others</option>
+                    </select>
+                  </div>
+
+               <div class="control-from">
+                <label for="image">Select your cv:</label>
+                <input type="file" id="image" name="image"  required="true" accept="image/*">
+              </div>
+              
+              <div class="button">
+                <button type="submit" action= "submit" name="submit" >Register</button>
+              </div>
+                <center> 
+                <p>Already a member? <a href="{% url 'login' %}">Login</a></p><br>
+              <p>Are you a recruiter? <a href="{% url 'recruiter_register' %}">Click here</a></p>
+              {% for message in messages %}
+              <h1>{{message}}</h1>
+              {% endfor %}
+            </center>
+          </form>
+        </div>
+      </div>
+    </div>
