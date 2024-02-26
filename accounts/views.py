@@ -233,7 +233,7 @@ def delete_job(request,id):
 
 
 def remove_job(request,id):
-    obj = SavedJobs.objects.get(job_id= id)
+    obj = SavedJobs.objects.get(job_id= id,user=request.user)
     obj.delete()
     messages.info(request, 'job removed')
     return redirect('seeker_dashboard')
